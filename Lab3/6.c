@@ -52,12 +52,12 @@ int main(void)
     sei();
 
     for (int i=0; i<25; i++){
-        delay_fun0;
+        delay_fun0();
 
     }
-    
+
     for(int i=0; i<25; i++){
-        delay_fun1;
+        delay_fun1();
 
     }
 
