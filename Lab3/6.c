@@ -51,8 +51,15 @@ int main(void)
 
     sei();
 
-    delay_fun0;
-    delay_fun1;
+    for (int i=0; i<25; i++){
+        delay_fun0;
+
+    }
+    
+    for(int i=0; i<25; i++){
+        delay_fun1;
+
+    }
 
     while (1){}
     return 0;
