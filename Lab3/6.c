@@ -2,36 +2,36 @@
 #include <avr/interrupt.h>
 
 
-void delay_fun0() 
-//for 2ms timer using TIMER0
-{
-    // Initial value
-    TCNT0 = 131; 
+// void delay_fun0() 
+// //for 2ms timer using TIMER0
+// {
+//     // Initial value
+//     TCNT0 = 131; 
 
-    //  start in [time scalar] mode. Timer counter control register
-    TCCR0A = 0x00; 
-    TCCR0B = 0x04; //change according to the timescale
+//     //  start in [time scalar] mode. Timer counter control register
+//     TCCR0A = 0x00; 
+//     TCCR0B = 0x04; //change according to the timescale
 
-    //waiting until the TOV1 is set
-    while ((TIFR0 & 0x01) == 0);
+//     //waiting until the TOV1 is set
+//     while ((TIFR0 & 0x01) == 0);
 
-    //reseting the timer settings to stop the timer
-    TCCR0A = 0x00;
-    TCCR0B = 0X00;
+//     //reseting the timer settings to stop the timer
+//     TCCR0A = 0x00;
+//     TCCR0B = 0X00;
 
-    // set the TOV0 bit to 1 for next round.
-    TIFR0 = 0x01; 
-}
+//     // set the TOV0 bit to 1 for next round.
+//     TIFR0 = 0x01; 
+// }
 
 void delay_fun1()
 //for 2ms timer usint TIMER1
 {
     // Initial value
-    TCNT1 = 131; 
+    TCNT1 = 57723.5; 
 
     //  start in [time scalar] mode. Timer counter control register
     TCCR1A = 0x00; 
-    TCCR1B = 0x04; //change according to the timescale
+    TCCR1B = 0x05; //change according to the timescale
 
     //waiting until the TOV1 is set
     while ((TIFR1 & 0x01) == 0);
@@ -51,8 +51,15 @@ int main(void)
 
     sei();
 
-    delay_fun0;
-    delay_fun1;
+    // for (int i=0; i<25; i++){
+    //     delay_fun0();
+
+    // }
+
+    // for(int i=0; i<25; i++){
+    delay_fun1();
+
+    
 
     while (1){}
     return 0;
