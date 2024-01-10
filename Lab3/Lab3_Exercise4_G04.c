@@ -33,6 +33,7 @@ int main()
     {
         uint8_t i=0;
 
+        //toggling LEDs for knight rider circuit
         for(i=0; i<4; i++){
             PORTB = PORTB | (1<<i);
             _delay_ms(DELAY_TIMER);
@@ -47,23 +48,6 @@ int main()
           	_delay_ms(DELAY_TIMER);
         }
 
-        // PORTB = (PORTB & ~mask) | 0b00001000;
-        // _delay_ms(DELAY_TIMER);
-
-        // PORTB = (PORTB & ~mask) | 0b00000100;
-        // _delay_ms(DELAY_TIMER);
-
-        // PORTB = (PORTB & ~mask) | 0b00000010;
-        // _delay_ms(DELAY_TIMER);
-
-        // PORTB = (PORTB & ~mask) | 0b00000001;
-        // _delay_ms(DELAY_TIMER);
-
-        // PORTB = (PORTB & ~mask) | 0b00000010;
-        // _delay_ms(DELAY_TIMER);
-
-        // PORTB = (PORTB & ~mask) | 0b00000100;
-        // _delay_ms(DELAY_TIMER);
     }
     return 0;
 }

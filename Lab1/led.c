@@ -10,11 +10,11 @@ int main(void){
 
     while(1){
 
-        PORTB = 0b00000000;
+        PORTB = PORTB | (1<<1);
 
         _delay_ms(DELAY);
 
-        PORTB = 0b00001111;
+        PORTB = PORTB & ~(1<<1);
         
         _delay_ms(DELAY);
     }
