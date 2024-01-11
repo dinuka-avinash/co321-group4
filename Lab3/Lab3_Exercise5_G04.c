@@ -31,7 +31,7 @@ int i = 0;
 
 ISR(TIMER0_OVF_vect){
     i++;
-    if(i==100){
+    if(i==100){ //to get 100ms delay
         PORTB ^= (1<<5);
         i=0;
     }

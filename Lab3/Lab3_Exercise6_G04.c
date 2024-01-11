@@ -40,16 +40,17 @@ int main(){
 
 int i=0;
 
+//ISR is executed everytime the timer overflows
 ISR(TIMER0_OVF_vect){
     i++;
-    if(i==25){
+    if(i==25){  //if block is executed only when the i reaches 25 (25 x 2ms delay)
         PORTB ^= (1<<0);
-        i=0;
+        i=0; //again set to 0
     }
-    TCNT0 = 131;
+    TCNT0 = 131; //initial timer value
 }
 
 ISR(TIMER1_OVF_vect){
-    PORTB ^= (1<<1);
+    PORTB ^= (1<<1);    //toggling the LED
     TCNT1 = 34286;
 }
