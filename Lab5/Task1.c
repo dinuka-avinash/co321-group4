@@ -17,7 +17,7 @@ int main(){
         while(!(ADCSRA & (1<<ADIF)));   // Wait until the conversion is over
 
         //not clear
-        uint16_t decimal_val = (ADCL>>6) | (ADCH<<2); // Get the converted decimal value from combining ADCL and ADCH to get 10-bit ADC result
+        uint16_t decimal_val = (ADCH<<2) | (ADCL>>6); // Get the converted decimal value from combining ADCL and ADCH to get 10-bit ADC result
 
         uint16_t voltage = (decimal_val * 8) / 1023; // Get the voltage value
 
@@ -25,7 +25,7 @@ int main(){
             PORTD |= (1<<i);    // Turn on the calculated LEDs
         }
 
-        for(int i = voltage; i < 8; i++){
+        for(int i = voltage; i >= 0; i--){
             PORTD &= ~(1<<i);   // Turn off the remaining LEDs
         }
 
