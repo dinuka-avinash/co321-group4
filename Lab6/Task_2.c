@@ -1,5 +1,5 @@
 #include <avr/io.h>
-
+#include <util/delay.h>
 // initialize the USART to work at 9600 baud, 8-bit data, no parity, and 1 stop bit
 void usart_init() {
     // Set baud rate to 9600 (for 16MHz clock)

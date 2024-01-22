@@ -28,6 +28,7 @@ char usart_receive() {
     return UDR0;
 }
 
+
 char caesar_cipher(char pt) {
     if (isupper(pt)) {
         return 'A' + (pt - 'A' + 3) % 26;
