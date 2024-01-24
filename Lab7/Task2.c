@@ -1,4 +1,6 @@
 #include <avr/io.h>
+#include <util/delay.h>
+#include <avr/eeprom.h>
 
 void usart_init() {
     // Set baud rate to 9600 (for 16MHz clock)
@@ -47,36 +49,58 @@ char EEPROMread(unsigned int address){
     //set address
     EEAR = address;
 
-    //start readung
-    EECR |= (1<EERE);
+    //start reading
+    EECR |= (1<<EERE);
 
-    //return data
-    return EEDR;
+    while(EECR & (1<<EERE));
+
+    if(EEDR == '\0'){
+        return '\r';
+
+    } else { 
+        return EEDR;
+        //return value
+    }
+
+
+
+    // _delay_ms(100);
+
+    // return EEDR;
 }
 
-int address_count = 0;
-
 int main(){
+
+    int address_count = 0;
 
     usart_init();
 
     //get the sentence and wrtie to the EEPROM
     while (1) {
+
         char get_char = usart_receive();
+
         if (get_char == '\r') {
+            EEPROMwrite(address_count, '\0');
+            address_count++;
             break;
 
         } else {
+
             EEPROMwrite(address_count, get_char);
             address_count++;
         }
     }
+        
+    _delay_ms(2000);
 
     //loop for first 1024 addresses
-    for (int i=0; i<1023; i++){
+    for (int i=0; i<address_count; i++){
 
-        usart_send(EEPROMread(i));
+        char result = EEPROMread(i);
+        usart_send(result);
 
     }
+
     return 0;
 }

@@ -28,11 +28,11 @@ int main(){
     
     unsigned int voltage = (decimal_val * 8) / 1023;
 
-    if (voltage < 4){
+    if (voltage < 2){
         PORTD |= (1<<PD7);
     }
 
-    if (voltage >= 4){
+    if (voltage >= 2){
         PORTD &= ~(1<<PD7);
     }
 
