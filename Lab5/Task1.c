@@ -11,8 +11,6 @@ void adc_init() {
 
 }
 
-
-
 int main() {
     DDRD |= 0xFF;  // Set all PORTD pins as output
 
